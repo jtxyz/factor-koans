@@ -1,12 +1,30 @@
 USING: tools.test ;
 IN: koans
 
-! words are like functions
+! "words" are like functions in other languages
 : fixed-greeting ( -- greeting )
     "Salutations!" ;
 
 ! use the above word to make this test pass
 { "Salutations!" } [ _!_ ] unit-test
+
+! words can return integers
+: number-of-bananas ( -- number )
+    _!_ ;
+
+{ 11 } [ number-of-bananas ] unit-test
+
+! words can return booleans too
+: do-you-like-bananas ( -- ? )
+    _!_ ;
+
+{ t } [ do-you-like-bananas ] unit-test
+
+! words can even return multiple items
+: banana-colours ( -- color color color )
+    _!_ ;
+
+{ "yellow" "yellow" "brownish" } [ banana-colours ] unit-test
 
 ! the word name is followed by a "stack effect declaration".
 ! this is like a function signature, it specifies how the

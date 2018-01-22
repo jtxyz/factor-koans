@@ -7,17 +7,14 @@ USE: koans
 
 IN: koans
 
-: _?_ ( -- greeting )
-    "placeholder" ;
-
 : _!_ ( -- greeting )
-    "Please replace the _!_ with some words" throw ;
+    "Please replace _!_ with the solution" throw ;
 
 : my-error-location ( error -- string )
      [
         "Your attention is directed to line " %
         dup line#>> #
-        " of " %
+        " of koans/tests/" %
         dup path>> "/" split last %
      ] "" make swap drop ;
 
