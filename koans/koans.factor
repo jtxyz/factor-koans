@@ -22,7 +22,7 @@ SYMBOL: total-tests
         dup line#>> #
         " of koans/tests/" %
         dup path>> "/" split last %
-     ] "" make swap drop ;
+     ] "" make nip ;
 
 : explain-failure ( test-failures -- )
     first
