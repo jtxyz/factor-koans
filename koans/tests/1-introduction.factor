@@ -15,4 +15,8 @@ unit-test  ! and then assert that they're equal
 ! they're typically written on one line
 { "Hello" } [ "Hello" ] unit-test
 
-! fix the one above and then let's move on
+! we'll sometimes use placeholders like _!_ to indicate
+! where you should fill in a solution
+
+! fix this one below and then let's move on
+{ "Hello" } [ _!_ ] unit-test

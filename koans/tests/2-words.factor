@@ -5,12 +5,24 @@ IN: koans
 : fixed-greeting ( -- greeting )
     "Salutations!" ;
 
-{ "Salutations!" } [ fixed-greeting ] unit-test
+! use the above word to make this test pass
+{ "Salutations!" } [ _!_ ] unit-test
 
-! the word name is followed by a stack effect declaration
-! this is like a function signature, it specifies how
-! the input and output. this one is missing its output declaration
-: stack-effect-greeting ( -- greeting )
+! the word name is followed by a "stack effect declaration".
+! this is like a function signature, it specifies how the
+! word interacts with the stack.
+
+! the items on the left are a description of the input the word expects
+! the items on the right are a description of the word's output
+: stack-effect-greeting ( -- )
     "Salutations!" ;
 
+! to get this test to pass you need to fill in the output declaration above
+! hint: look at fixed-greeting for inspiration
 { "Salutations!" } [ stack-effect-greeting ] unit-test
+
+
+! only the numbers are significant. you state how many words will be
+! consumed and how many will be produced. the compiler checks the
+! consistency of these definitions
+! TODO: write another koan to drive this out
