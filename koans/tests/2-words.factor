@@ -6,25 +6,25 @@ IN: koans
     "Salutations!" ;
 
 ! use the above word to make this test pass
-{ "Salutations!" } [ _!_ ] unit-test
+{ "Salutations!" } [ _!_ ] unit-test koan
 
 ! words can return integers
 : number-of-bananas ( -- number )
     _!_ ;
 
-{ 11 } [ number-of-bananas ] unit-test
+{ 11 } [ number-of-bananas ] unit-test koan
 
 ! words can return booleans too
 : do-you-like-bananas ( -- ? )
     _!_ ;
 
-{ t } [ do-you-like-bananas ] unit-test
+{ t } [ do-you-like-bananas ] unit-test koan
 
 ! words can even return multiple items
 : banana-colours ( -- color color color )
     _!_ ;
 
-{ "yellow" "yellow" "brownish" } [ banana-colours ] unit-test
+{ "yellow" "yellow" "brownish" } [ banana-colours ] unit-test koan
 
 ! the word name is followed by a "stack effect declaration".
 ! this is like a function signature, it specifies how the
@@ -37,7 +37,7 @@ IN: koans
 
 ! to get this test to pass you need to fill in the output declaration above
 ! hint: look at fixed-greeting for inspiration
-{ "Salutations!" } [ stack-effect-greeting ] unit-test
+{ "Salutations!" } [ stack-effect-greeting ] unit-test koan
 
 
 ! only the numbers are significant. you state how many words will be

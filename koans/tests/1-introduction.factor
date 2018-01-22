@@ -19,4 +19,4 @@ unit-test  ! and then assert that they're equal
 ! where you should fill in a solution
 
 ! fix this one below and then let's move on
-{ "Hello" } [ _!_ ] unit-test
+{ "Hello" } [ _!_ ] unit-test koan
