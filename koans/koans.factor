@@ -7,6 +7,12 @@ USE: koans
 
 IN: koans
 
+: _?_ ( -- greeting )
+    "placeholder" ;
+
+: _!_ ( -- greeting )
+    "Please replace the _!_ with some words" throw ;
+
 : my-error-location ( error -- string )
      [
         "Your attention is directed to line " %
