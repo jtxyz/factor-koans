@@ -30,23 +30,28 @@ SYMBOL: total-tests
     [ error>> print-error ]
     bi ;
 
-: encourage ( test-failures -- )
-    length total-tests get-global swap - ! number of passed tests
-    [
-        ".progress" utf8 file-contents string>number {
-            { [ [ dup 0 = ] dip swap ] [ "Good luck on your journey!" ] }
-            { [ 2dup > ] [ "You are progressing!" ] }
-            [ "Do not lose hope!" ]
-        } cond write nl nl 2drop
-    ]
-    [ number>string ".progress" utf8 set-file-contents ]
-    bi ;
-
-: illuminate-path ( test-failures -- )
-    [ encourage ] [ explain-failure ] bi ;
+: number-of-passed-tests ( test-failures -- n )
+    length total-tests get-global swap - ;
 
 : ensure-progress-file-exists ( -- )
     ".progress" exists? [ "0" ".progress" utf8 set-file-contents ] unless ;
+
+: previous-number-of-passed-tests ( -- n )
+    ".progress" utf8 file-contents string>number ;
+
+: save-number-of-passed-tests ( n -- )
+    number>string ".progress" utf8 set-file-contents ;
+
+: encourage ( test-failures -- )
+    number-of-passed-tests {
+        { [ dup 0 = ] [ "Good luck on your journey!" ] }
+        { [ dup previous-number-of-passed-tests > ] [ "You are progressing!" ] }
+        [ "Do not lose hope!" ]
+    } cond write nl nl
+    save-number-of-passed-tests ;
+
+: illuminate-path ( test-failures -- )
+    [ encourage ] [ explain-failure ] bi ;
 
 : test-koans-examples ( -- )
     ensure-progress-file-exists
