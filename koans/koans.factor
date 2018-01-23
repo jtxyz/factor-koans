@@ -60,7 +60,11 @@ SYMBOL: total-tests
     [ "koans" test ] with-null-writer
 
     test-failures get dup empty?
-    [ drop "You have achieved enlightenment." print ]
+    [
+        drop
+        { "You have achieved enlightenment." "Now go forth and factor." }
+        [ print ] each
+    ]
     [ illuminate-path ] if ;
 
 
