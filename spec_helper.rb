@@ -1,10 +1,12 @@
 require 'tmpdir'
 
-def in_a_clean_room
+def in_a_clean_room(&block)
+  @output = nil
+  @latest_file = nil
+
   Dir.mktmpdir 'factor-koans' do |tmpdir|
     `cp -r meditate.sh koans #{tmpdir}`
-    Dir.chdir tmpdir
-    yield
+    Dir.chdir(tmpdir, &block)
   end
 end
 
@@ -30,6 +32,8 @@ def then_i_replace(content:, with:)
 end
 
 def update_contents(old, new)
+  raise 'No file to read or write. Did you forget to call #i_should_be_directed_to ?' unless @latest_file
+
   File.read(@latest_file).tap do |contents|
     File.write(@latest_file, contents.sub(old, new))
   end

@@ -71,7 +71,29 @@ in_a_clean_room do # so chill
   meditate
   i_should_see('You have achieved enlightenment.')
   i_should_see('Now go forth and factor.')
+end
 
+in_a_clean_room do # less-happy-path
+  meditate
+  i_should_be_directed_to(line: 22, of_file: 'koans/tests/1-introduction.factor')
+  then_i_fill_in('"Hello"')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 9, of_file: 'koans/tests/2-words.factor')
+
+  meditate
+  i_should_see('Do not lose hope!')
+  i_should_be_directed_to(line: 9, of_file: 'koans/tests/2-words.factor')
+  then_i_fill_in('"some-garbage"')
+
+  meditate
+  i_should_see('Do not lose hope!')
+  i_should_be_directed_to(line: 9, of_file: 'koans/tests/2-words.factor')
+  then_i_replace(content: '"some-garbage"', with: 'fixed-greeting')
+
+  meditate
+  i_should_see('You are progressing')
 end
 
 puts 'Your Koans are within normal operating parameters.'
