@@ -1,4 +1,4 @@
-USING: tools.test kernel math combinators ;
+USING: tools.test kernel math combinators combinators.short-circuit.smart ;
 IN: koans
 
 
@@ -44,7 +44,7 @@ IN: koans
     {
       { 1 [ "a single solitary coconut" ] } ! this quotation is called when the input is exactly 1
       { 2 [ "two coconuts" ] }              ! this quotation is called when the input is exactly 2
-      [ drop "a lovely bunch" ]                  ! this quotation is called in all other cases
+      [ drop "a lovely bunch" ]             ! this quotation is called in all other cases
     }
     case ;
 
@@ -52,16 +52,28 @@ IN: koans
 
 ! All about "cond"
 ! you can check a value in more complicated ways using "cond"
-
 : describe-nth-castle ( number -- string )
     {
-      { [ dup 0 <= ] [ drop "When I first came here, this was all swamp." ] }
-      { [ dup 1 = ] [ drop "Sank into the swamp" ] }
-      { [ dup 2 = ] [ drop "Sank into the swamp too" ] }
-      { [ dup 3 = ] [ drop "Burned, fell over, and then sank into the swamp" ] }
-      { [ dup 4 = ] [ drop "The strongest castle in all of England" ] }
-      [ drop "... but I don't want land !" ]
+      {
+        [ dup 0 <= ] ! when the input is less than or equal to zero
+        [ "When I first came here, this was all swamp." ]
+      }
+      {
+        [ dup { [ 1 = ] [ 2 = ] } || ] ! if it equals 1 or 2
+        [ "Sank into the swamp" ]
+      }
+      {
+        [ dup 3 = ] ! only if it is equal to three
+        [ "Burned, fell over, and then sank into the swamp" ]
+      }
+      {
+        [ dup 4 = ] ! only if it is equal to four
+        [ "The strongest castle in all of England" ]
+      }
+      ! the last quotation will be called in all other cases
+      [ "... but I don't want land !" ]
     }
-    cond ;
+    cond
+    nip ; ! take the initial input off the stack
 
 { "The strongest castle in all of England" } [ _!_ describe-nth-castle ] unit-test koan
