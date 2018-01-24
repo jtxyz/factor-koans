@@ -69,6 +69,46 @@ in_a_clean_room do # so chill
   then_i_fill_in('4')
 
   meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 17, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('15')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 23, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('{ 1 }')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 29, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('1')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 32, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('1')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 38, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('"raw"')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 39, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('"floppy"')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 42, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('"raw"')
+
+  meditate
+  i_should_see('You are progressing')
+  i_should_be_directed_to(line: 43, of_file: 'koans/tests/4-sequences.factor')
+  then_i_fill_in('"chunky"')
+
+  meditate
   i_should_see('You have achieved enlightenment.')
   i_should_see('Now go forth and factor.')
 end
