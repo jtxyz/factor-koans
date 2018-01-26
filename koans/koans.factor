@@ -1,7 +1,7 @@
 USING: tools.test prettyprint
      kernel namespaces sequences accessors combinators
      debugger source-files.errors.debugger
-     make math math.parser splitting
+     make math math.parser math.order splitting sorting.slots
      io io.streams.null io.files io.encodings.utf8 ;
 
 USE: koans
@@ -24,8 +24,11 @@ SYMBOL: total-tests
         dup path>> "/" split last %
      ] "" make nip ;
 
+: sort-failures ( test-failures -- sorted-test-failures )
+    { { path>> <=> } { line#>> <=> } } sort-by ;
+
 : explain-failure ( test-failures -- )
-    first
+    sort-failures first
     [ my-error-location write nl nl ]
     [ error>> print-error ]
     bi ;
